@@ -3,4 +3,9 @@ name = "songnim-multiple-web"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "songsim_multiple_web"
+crate-type = ["staticlib"]
+
 [dependencies]
+image = { version = "0.25", default-features = false, features = ["png"] }
