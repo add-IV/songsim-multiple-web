@@ -3,13 +3,15 @@ import jester
 import songnim
 import ffi
 
+const imgStyle = "style='width:80vmin;height:80vmin;image-rendering:pixelated'"
+
 router myrouter:
   get "/nim":
     try:
       let text = decodeUrl(request.query)
       let data = createPngDataFromString(text)
       let encoded = encode(data)
-      resp fmt"<img src='data:image/png;base64,{encoded}'>"
+      resp fmt"<img {imgStyle} src='data:image/png;base64,{encoded}'>"
     except:
       resp "error"
   get "/rust":
@@ -22,7 +24,20 @@ router myrouter:
       else:
         defer: songsimRustFree(pngBuf, dataLen)
         let encoded = encode(pngBuf.toOpenArray(0, dataLen.int - 1))
-        resp fmt"<img src='data:image/png;base64,{encoded}'>"
+        resp fmt"<img {imgStyle} src='data:image/png;base64,{encoded}'>"
+    except:
+      resp "error"
+  get "/c":
+    try:
+      let text = decodeUrl(request.query)
+      var dataLen: csize_t
+      let pngBuf = songsimC(text.cstring, addr dataLen)
+      if pngBuf == nil:
+        resp "error"
+      else:
+        defer: songsimCFree(pngBuf, dataLen)
+        let encoded = encode(pngBuf.toOpenArray(0, dataLen.int - 1))
+        resp fmt"<img {imgStyle} src='data:image/png;base64,{encoded}'>"
     except:
       resp "error"
 
