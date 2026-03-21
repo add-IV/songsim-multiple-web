@@ -46,7 +46,7 @@ proc main() =
   if paramCount() == 1:
     port = paramStr(1).parseInt().Port
   else:
-    port = Port(8080)
+    port = Port(8081)
   let settings = newSettings(port = port)
   var jester = initJester(myrouter, settings = settings)
   jester.serve()
