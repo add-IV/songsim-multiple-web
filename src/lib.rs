@@ -27,10 +27,10 @@ fn make_png(song_info: &SongInfo) -> Option<Vec<u8>> {
 
     for locations in song_info.frequencies.values() {
         for (i, &occ1) in locations.iter().enumerate() {
-            img.put_pixel(occ1 as u32, occ1 as u32, Rgba([0, 0, 0, 255]));
+            img.put_pixel(occ1 as u32, occ1 as u32, Rgba([222, 165, 132, 255]));
             for &occ2 in &locations[i + 1..] {
-                img.put_pixel(occ1 as u32, occ2 as u32, Rgba([0, 0, 0, 255]));
-                img.put_pixel(occ2 as u32, occ1 as u32, Rgba([0, 0, 0, 255]));
+                img.put_pixel(occ1 as u32, occ2 as u32, Rgba([222, 165, 132, 255]));
+                img.put_pixel(occ2 as u32, occ1 as u32, Rgba([222, 165, 132, 255]));
             }
         }
     }

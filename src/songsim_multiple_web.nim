@@ -43,7 +43,7 @@ router myrouter:
 
 proc main() =
   var port: Port
-  if paramCount() == 2:
+  if paramCount() == 1:
     port = paramStr(1).parseInt().Port
   else:
     port = Port(8080)

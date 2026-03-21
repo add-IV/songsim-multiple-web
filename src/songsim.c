@@ -257,13 +257,13 @@ uint8_t *songsim_c(const char *text, size_t *out_len) {
             for (size_t a = 0; a < e->plen; a++) {
                 /* diagonal */
                 size_t idx = (e->pos[a] * n + e->pos[a]) * 4;
-                px[idx] = px[idx+1] = px[idx+2] = 0; px[idx+3] = 0xff;
+                px[idx] = 0x55; px[idx+1] = 0x55; px[idx+2] = 0x55; px[idx+3] = 0xff;
                 for (size_t b = a + 1; b < e->plen; b++) {
                     size_t x = e->pos[a], y = e->pos[b];
                     idx = (y * n + x) * 4;
-                    px[idx] = px[idx+1] = px[idx+2] = 0; px[idx+3] = 0xff;
+                    px[idx] = 0x55; px[idx+1] = 0x55; px[idx+2] = 0x55; px[idx+3] = 0xff;
                     idx = (x * n + y) * 4;
-                    px[idx] = px[idx+1] = px[idx+2] = 0; px[idx+3] = 0xff;
+                    px[idx] = 0x55; px[idx+1] = 0x55; px[idx+2] = 0x55; px[idx+3] = 0xff;
                 }
             }
         }

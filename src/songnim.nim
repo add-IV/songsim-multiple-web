@@ -21,11 +21,11 @@ proc makePixels(songInfo: SongInfo): simplepng.Pixels =
 
   for _, locations in songInfo.frequencies:
     for i, occurrence1 in locations:
-      result[occurrence1, occurrence1].setColor(0, 0, 0, 255) # diagonal
+      result[occurrence1, occurrence1].setColor(255, 194, 0, 255) # diagonal
       for j in (i+1)..<locations.len:
         let occurrence2 = locations[j]
-        result[occurrence1, occurrence2].setColor(0, 0, 0, 255)
-        result[occurrence2, occurrence1].setColor(0, 0, 0, 255)
+        result[occurrence1, occurrence2].setColor(255, 194, 0, 255)
+        result[occurrence2, occurrence1].setColor(255, 194, 0, 255)
 
 proc createPngDataFromString*(song: string): string =
   let pixels = makePixels(calcSongSeq(song))
