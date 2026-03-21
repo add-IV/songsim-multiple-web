@@ -1,8 +1,13 @@
 [Unit]
 Description=SongSim Multiple Web - Compare Nim/Rust/C songsim implementations
+After=network.target
 
 [Service]
 Type=simple
 User=add-iv
 WorkingDirectory=/home/add-iv/songsim-multiple-web
 ExecStart=/home/add-iv/songsim-multiple-web/songsim_multiple_web
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
